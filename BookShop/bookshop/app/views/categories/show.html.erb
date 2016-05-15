@@ -1,0 +1,15 @@
+<% provide(:title, "Category details")%>
+<div class="span9">
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %> <br/>
+  <b>Subcategories</b> <br/>
+  <% @category.subcategories.each do |sub| %>
+  <%= sub.name %> <br/>
+      <% end %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
+</div>

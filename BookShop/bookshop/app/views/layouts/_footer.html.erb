@@ -1,0 +1,47 @@
+<div  id="footerSection">
+  <div class="container">
+    <div class="row">
+      <div class="span3">
+        <h5>ACCOUNT</h5>
+        <% if !logged_in? %>
+        <%= link_to 'YOUR ACCOUNT', login_path %>
+        <%= link_to 'PERSONAL INFORMATION', current_user %>
+        <%= link_to 'ORDER HISTORY', current_user %>
+        <% elsif logged_in? %>
+            <%= link_to 'YOUR ACCOUNT', current_user %>
+            <%= link_to 'PERSONAL INFORMATION', current_user %>
+            <%= link_to 'ORDER HISTORY', current_user %>
+        <% end %>
+      </div>
+      <div class="span3">
+        <h5>INFORMATION</h5>
+        <%= link_to 'CONTACT', contact_path %>
+        <%= link_to 'REGISTRATION', register_path %>
+        <a href="tac.html">TERMS AND CONDITIONS</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="span3">
+        <h5>OUR OFFERS</h5>
+        <%= link_to 'NEW PRODUCTS', products_path %>
+        <a href="#">TOP SELLERS</a>
+        <a href="special_offer.html">SPECIAL OFFERS</a>
+        <a href="#">MANUFACTURERS</a>
+        <a href="#">SUPPLIERS</a>
+      </div>
+      <div id="socialMedia" class="span3 pull-right">
+        <h5>SOCIAL MEDIA </h5>
+        <a href="#">
+          <%= image_tag('facebook.png', :alt => "facebook.png") %>
+
+        </a>
+        <a href="#">
+          <%= image_tag('twitter.png', :alt => "twitter.png") %>
+        </a>
+        <a href="#">
+          <%= image_tag('youtube.png', :alt => "youtube.png") %>
+        </a>
+      </div>
+    </div>
+    <p class="pull-right">&copy; Bookshop K&J</p>
+  </div><!-- Container End -->
+</div>

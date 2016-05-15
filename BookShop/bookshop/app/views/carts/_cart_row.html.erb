@@ -1,0 +1,20 @@
+<% current_order.order_items.each do |order_item| %>
+
+    <%= form_for order_item, remote: true do |f| %>
+
+        <tr>
+          <td> <%= image_tag(order_item.product.image_url, :style =>  "width: 60px") %></td>
+          <td><%= order_item.product.name %><br/><%= order_item.product.author %></td>
+          <td>
+            <%= f.number_field :quantity, value: order_item.quantity.to_i, style: "width: 3em", min: 1 %>
+            <%= f.hidden_field :product_id, value: order_item.product.id %>
+            <%= f.submit "Update Quantity", class: "btn btn-primary" %>
+            <%= link_to "Delete", order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+
+            <!--<div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>-->
+          </td>
+          <td><%= number_to_currency order_item.unit_price %></td>
+          <td><%= number_to_currency order_item.total_price %></td>
+        </tr>
+    <% end %>
+<% end %>

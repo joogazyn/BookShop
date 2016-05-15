@@ -1,0 +1,20 @@
+<li class="span3">
+  <div class="thumbnail">
+    <%= image_tag product.image_url, width: '150' %>
+    <div class="caption">
+      <h5><%= truncate(product.name.gsub(/<.*?>/,''), :length => 32)  %></h5>
+      <p>
+        <%= truncate(product.description.gsub(/<.*?>/,''), :length => 35) %>
+      </p>
+      <%= form_for order_item, remote: true do |f| %>
+          <h4 style="text-align:center">
+            <%= f.submit 'Add to', class: 'btn' %>
+            <span class="btn btn-primary"><%= link_to "#{number_to_currency product.price}", product, style: "color: #fff; text-decoration: none" %></span>
+          </h4>
+            <%= f.hidden_field :quantity, value: 1, class: "form-control", min: 1 %>
+            <%= f.hidden_field :product_id, value: product.id %>
+      <% end %>
+
+    </div>
+  </div>
+</li>

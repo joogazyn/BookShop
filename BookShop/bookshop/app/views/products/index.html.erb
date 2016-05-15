@@ -1,0 +1,43 @@
+<% provide(:title, "All products")%>
+<div class="span9">
+<% if logged_in? && current_user.admin? %>
+<h1>Listing Products</h1>
+      <br/>
+      <%= link_to 'New Product', new_product_path %>
+      <br/>
+    <% @products.each do |product| %>
+      <div class="row">
+        <div class="span2">
+          <%= image_tag product.image_url, width: '150' %>
+        </div>
+
+        <div class="span6">
+          <h4><%= product.name %></h4>
+          <p><%= truncate(product.description.gsub(/<.*?>/,''), :length => 200) %></p>
+        </div>
+
+        <div class="span1">
+          <br/>
+          <%= link_to 'Show', product, style: 'text-decoration: underline' %> <br/>
+          <%= link_to 'Edit', edit_product_path(product), style: 'text-decoration: underline'%><br/>
+          <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, style: 'text-decoration: underline' %>
+        </div>
+      </div>
+      <br/>
+    <% end %>
+
+<br>
+
+      <% elsif !logged_in? %>
+      <p id="notice">Your order successfully oformlen!</p>
+      <h3 class="text-center">Products for Sale</h3>
+
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <% @products.each do |product| %>
+              <%= render "product_row", product: product, order_item: @order_item %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+</div>
